@@ -1,11 +1,242 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from '../components/Layout.astro';
+import ServiceCard from '../components/ServiceCard.jsx';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Pulled directly from addisonautorepairs.com
+const services = [
+  { title: "Transmission & Clutch Repair", description: "Comprehensive diagnostics, repairs, and full replacements for manual and automatic transmissions." },
+  { title: "AC & Heat Systems", description: "Complete climate control services, from freon recharges to heater core repairs." },
+  { title: "Tires & Alignments", description: "Tire sales, patching, balancing, and precision alignments for optimal road wear." },
+  { title: "Brakes & Suspension", description: "Pad replacements, rotor resurfacing, and shock/strut installations." },
+  { title: "Scheduled Maintenance", description: "Factory scheduled maintenance, timing belt replacements, oil changes, and tune-ups." },
+  { title: "Engine Diagnostics", description: "Check engine light scanning, failed emissions repair, and advanced troubleshooting." }
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Addison Auto Repair | Your One-Stop Auto Shop">
+  <main>
+    <!-- Hero Section -->
+    <section class="container hero">
+      <span class="tagline">Located in Addison, IL</span>
+      <h1>Friendly, honest service <br />and expert repairs.</h1>
+      <p class="sub-headline">From timing belts to full transmission repair, count on us for fast, prompt service using high-quality products.</p>
+      <a href="#services" class="btn-primary">View Our Services</a>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="container services-section">
+      <div class="section-header">
+        <h2>Our Specialties</h2>
+        <p>A complete range of automotive services under one roof.</p>
+      </div>
+      
+      <div class="grid">
+        {services.map((service, idx) => (
+          <ServiceCard 
+            title={service.title} 
+            description={service.description} 
+            index={idx} 
+            client:visible 
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- About Section with Square Image Split -->
+    <section id="about" class="container about-section">
+      <div class="about-grid">
+        <div class="about-content">
+          <h2>About Us</h2>
+          <p>If you're experiencing problems with your vehicle, let us be at your service. Our professional technicians provide a wide variety of repair and maintenance services, allowing us to be your one-stop shop in Addison.</p>
+          
+          <div class="payment-info">
+            <strong>Accepted Payments:</strong> Cash, American Express, Visa, Master Card.
+          </div>
+        </div>
+        <div class="about-image-container">
+		  <img 
+		    src="https://lh3.googleusercontent.com/gps-cs-s/APNQkAE6S9dHSEPbYfW99WWC4GEQyqu6jLS9OteUoQ9BrBgQIz3gCLEdtReLdLd5dqoyV6CuJMKT_Y3nOxEdIDKPfw9v_reLIBivZ_uxHdHUsNbS7dx2uEkw2ZAi0gYE3VQFQy6PGDFNeA=s1360-w1360-h1020-rw" 
+		    alt="Addison Auto Repair Shop Interior and Team" 
+		    class="about-image" 
+		  />
+		</div>
+      </div>
+    </section>
+
+    <section id="reviews" class="container reviews-section">
+      <div class="section-header">
+        <h2>What Our Customers Say</h2>
+        <p>Reliable, honest service you can count on in Addison.</p>
+      </div>
+      
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"The team at Addison Auto is incredibly honest and fast. They fixed my transmission in two days when others said it would take a week. Truly professional."</p>
+          <cite>— Sarah J.</cite>
+        </div>
+        
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Finally found a shop that doesn't try to upsell me. Straightforward diagnostics and transparent pricing. I won't go anywhere else."</p>
+          <cite>— Mike D.</cite>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <p>"Expert mechanical care. They took the time to explain the issue with my cooling system and saved me a significant amount on unnecessary repairs."</p>
+          <cite>— Robert T.</cite>
+        </div>
+      </div>
+
+      <div class="review-footer">
+        <a href="https://www.google.com/search?q=Addison+Auto+Repairs+Addison+IL" target="_blank" class="link-secondary">
+          See more reviews on Google →
+        </a>
+      </div>
+    </section>
+  </main>
 </Layout>
+
+<style>
+  /* Hero Styles */
+  .hero {
+    padding-top: 6rem;
+    padding-bottom: 8rem;
+    text-align: center;
+  }
+  .tagline {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .sub-headline {
+    color: var(--text-secondary);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto 2.5rem auto;
+    line-height: 1.5;
+  }
+
+  /* Services Grid Styles */
+  .services-section {
+    padding-bottom: 10rem;
+  }
+  .section-header {
+    margin-bottom: 4rem;
+  }
+  .section-header h2 {
+    font-size: 2rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .section-header p {
+    color: var(--text-secondary);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  /* About Section Styles */
+  .about-section {
+    padding-bottom: 8rem;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center; 
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    border: 1px solid #1f1f1f;
+    padding: 4rem;
+  }
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .about-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.02em;
+  }
+  .about-content p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+  .payment-info {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    padding: 1rem;
+    background-color: rgba(255, 85, 0, 0.1);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    margin-top: auto;
+  }
+  
+  /* Square Image Container & Styling */
+  .about-image-container {
+    width: 100%;
+    aspect-ratio: 1 / 1; 
+  }
+  .about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      padding: 2rem;
+      gap: 2rem;
+    }
+    .about-image-container {
+      aspect-ratio: auto; 
+      min-height: 250px;
+    }
+  }
+
+  /* React Component Scoped Styling Wrapper */
+  :global(.card) {
+    background-color: var(--bg-secondary);
+    padding: 3rem 2.5rem;
+    border-radius: 16px;
+    border: 1px solid #1f1f1f;
+  }
+  :global(.card h3) {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+  :global(.card p) {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+  :global(.card-number) {
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+</style>

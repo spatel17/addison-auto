@@ -1,0 +1,50 @@
+---
+---
+<footer class="footer">
+  <div class="container footer-content">
+    <div class="footer-info">
+      <h3>Addison Auto Repair</h3>
+      <p>215 N Addison Rd<br />Addison, IL 60101</p>
+      <p>
+        <a href="tel:+16308328844" class="phone-link">
+          (630) 832-8844
+        </a>
+      </p>
+    </div>
+    <div class="footer-links">
+      <p>&copy; {new Date().getFullYear()} Addison Auto Repair. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid #1f1f1f;
+    padding: 4rem 0;
+    margin-top: 0;
+  }
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .footer-info h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  .footer-info p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+  }
+  .phone-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .footer-links {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+</style>

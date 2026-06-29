@@ -1,4 +1,5 @@
+import { defineConfig } from 'astro/config';
+
 export default defineConfig({
-  site: 'https://addisonautorepair.com', // Make sure this is here
-  integrations: [sitemap()]
+  // Your existing configuration settings will go here
 });
